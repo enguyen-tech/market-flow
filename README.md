@@ -1,1 +1,9 @@
-# market-flow
+# Market Flow
+
+## Overview
+Market Flow is an ASP.NET Core application used for educational purposes.
+
+## Technologies
+- ASP.NET Core 10
+- Entity Framework Core
+- .NET Aspire
