@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Diagnostics;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -5,6 +7,19 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
+
+app.UseExceptionHandler(err => err.Run(async ctx =>
+{
+    var ex = ctx.Features.Get<IExceptionHandlerFeature>()?.Error;
+    ctx.Response.StatusCode = ex switch
+    {
+        DomainException => 400,
+        NotFoundException => 404,
+        UnauthorizedAccessException => 401,
+        _ => 500
+    };
+    await ctx.Response.WriteAsJsonAsync(new { error = ex?.Message });
+}));
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
