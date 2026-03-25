@@ -1,2 +1,8 @@
 <Solution>
+  <Folder Name="/src/">
+    <Project Path="src/MarketFlow.API/MarketFlow.API.csproj" />
+    <Project Path="src/MarketFlow.Application/MarketFlow.Application.csproj" />
+    <Project Path="src/MarketFlow.Domain/MarketFlow.Domain.csproj" />
+    <Project Path="src/MarketFlow.Infrastructure/MarketFlow.Infrastructure.csproj" />
+  </Folder>
 </Solution>
