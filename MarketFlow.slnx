@@ -5,4 +5,7 @@
     <Project Path="src/MarketFlow.Domain/MarketFlow.Domain.csproj" />
     <Project Path="src/MarketFlow.Infrastructure/MarketFlow.Infrastructure.csproj" />
   </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/MarketFlow.UnitTests/MarketFlow.UnitTests.csproj" />
+  </Folder>
 </Solution>
