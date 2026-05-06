@@ -1,9 +1,12 @@
 using Microsoft.AspNetCore.Diagnostics;
 using MarketFlow.API.Features.HealthChecks;
+using MarketFlow.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services
-    .AddOpenApi();
+    .AddOpenApi()
+    .AddApplicationLayer()
+    .AddInfrastructureLayer();
 
 var app = builder.Build();
 
