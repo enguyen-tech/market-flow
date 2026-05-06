@@ -1,4 +1,5 @@
 using MarketFlow.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace MarketFlow.Infrastructure.Repositories;
 
@@ -13,26 +14,27 @@ public class ProductRepository : IProductRepository
 
     public Task AddAsync(Product product, CancellationToken ct = default)
     {
-        throw new NotImplementedException();
+        db.Products.Add(product);
+        return db.SaveChangesAsync(ct);
     }
 
-    public Task CountAsync(CancellationToken ct = default)
+    public Task<int> CountAsync(CancellationToken ct = default)
     {
-        throw new NotImplementedException();
+        return db.Products.CountAsync(ct);
     }
 
-    public Task GetAllAsync(CancellationToken ct = default)
+    public Task<List<Product>> GetAllAsync(CancellationToken ct = default)
     {
-        throw new NotImplementedException();
+        return db.Products.ToListAsync(ct);
     }
 
-    public Task GetByIdAsync(Guid id, CancellationToken ct = default)
+    public Task<Product?> GetByIdAsync(Guid id, CancellationToken ct = default)
     {
-        throw new NotImplementedException();
+        return db.Products.FirstOrDefaultAsync(p => p.Id == id, ct);
     }
 
-    public Task GetPagedAsync(int page, int size, CancellationToken ct = default)
+    public Task<List<Product>> GetPagedAsync(int page, int size, CancellationToken ct = default)
     {
-        throw new NotImplementedException();
+        return db.Products.Skip((page - 1) * size).Take(size).ToListAsync(ct);
     }
 }
