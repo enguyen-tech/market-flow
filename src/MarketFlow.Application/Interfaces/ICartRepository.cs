@@ -4,7 +4,13 @@ namespace MarketFlow.Application.Interfaces;
 
 public interface ICartRepository
 {
-        Task GetByUserIdAsync(Guid userId, CancellationToken ct = default);
-        Task AddAsync(Cart cart, CancellationToken ct = default);
-        Task UpdateAsync(Cart cart, CancellationToken ct = default);
+    // Retourne null si le client n'a pas encore de panier
+    Task GetByCustomerIdAsync(string customerId, CancellationToken ct = default);
+
+    // Retourne null si l'ID n'existe pas
+    Task GetByIdAsync(Guid id, CancellationToken ct = default);
+
+    // Upsert : crée si nouveau, met à jour si existant
+    // Le handler ne distingue pas les deux cas — c'est la responsabilité du repo
+    Task UpsertAsync(Cart cart, CancellationToken ct = default);
 }
