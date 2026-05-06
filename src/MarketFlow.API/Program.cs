@@ -7,7 +7,8 @@ builder.Services
     .AddOpenApi()
     .AddApplicationLayer()
     .AddAuthorization()
-    .AddInfrastructureLayer(builder.Configuration);
+    .AddInfrastructureLayer(builder.Configuration)
+    .AddHostedService<MigrationService>();
 
 var app = builder.Build();
 
