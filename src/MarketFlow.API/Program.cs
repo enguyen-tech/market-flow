@@ -25,7 +25,7 @@ app.UseExceptionHandler(err => err.Run(async ctx =>
 }));
 
 app.MapOpenApi();
-app.UseAuthentication();
+// app.UseAuthentication();
 app.UseAuthorization();
 app.MapHealth();
 app.Run();
